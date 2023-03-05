@@ -1,5 +1,5 @@
 # AccTask
-## small task for handling student with course
+## Small task for handling student with course
 
 # Befor Using
 > Change ConnectionString with your Server Name
