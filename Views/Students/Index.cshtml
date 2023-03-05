@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AccFlex.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-muted text-center">
+    <i class="bi bi-collection"></i>
+    All Students
+</h1>
+
+<p class="text-right">
+    <a asp-action="Create" class="btn btn-outline-success bi-plus-circle"> New student</a>
+</p>
+<hr />
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning" role="alert">
+        <i class="bi bi-exclamation-triangle"></i>
+        Sorry Thers is no Students to show Now, back again !
+    </div>
+}
+else
+{
+    <table class="table table-hover mb-4">
+        <thead class="table-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+              
+                <th class="text-light text-center ">
+                    <i class="bi bi-toggle-on"></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+               
+                    <td class="text-center">
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ID">
+                            <i class="bi bi-pencil "></i>
+                        </a> |
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.ID">
+                            <i class="bi bi-view-list"></i>
+                        </a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

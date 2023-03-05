@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AccFlex.Models.StudentCourse>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1 class="text-muted text-center">
+    <i class="bi bi-collection"></i>
+    All Studends in Courses
+</h1>
+
+<p class="text-right">
+    <a asp-action="Create" class="btn btn-outline-success bi-plus-circle"> Assign New</a>
+</p>
+<hr />
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning" role="alert">
+        <i class="bi bi-exclamation-triangle"></i>
+        Sorry Thers is no Assigned Now, back again !
+    </div>
+}
+else
+{
+
+    <div class="container">
+
+        @foreach (var item in Model.GroupBy(n => n.Course.Name))
+        {
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>
+                            <i class="bi bi-arrow-bar-right"></i>
+                            Students in
+                            @Html.DisplayFor(modelItem => item.Key)
+                        </th>
+                        <th class="text-light bi-toggle2-on ">
+                        </th>
+                    </tr>
+                </thead>
+
+                @foreach (var item2 in Model.Where(m => m.Course.Name == item.Key))
+                {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item2.Student.Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink(" ", "Delete", new { item2.StudentID, item2.CourseID }, new { @class = "text-danger bi-trash-fill" })
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        }
+    </div>
+ 
+}
+

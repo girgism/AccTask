@@ -1,0 +1,76 @@
+﻿@model AccFlex.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-muted text-center">
+    <i class="bi bi-list"></i>
+    All About Student
+</h1>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        
+        <dt class="col-sm-2">
+            Student Age : 
+        </dt>
+
+        <dd class="col-sm-10">
+            @ViewBag.age
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gender.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Class)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Class.Name)
+        </dd>
+    </dl>
+
+    @if (Model.StudentCourses.Count() > 0)
+    {
+        <strong>Enrolled Courses ... </strong>
+        <ul>
+            @foreach (var course in Model.StudentCourses)
+            {
+                <li>@course.Course.Name</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle"></i>
+            Student doesn't assigned to Courses yet !!
+        </div>
+    }
+    <hr />
+
+
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="Index">
+        <i class="bi bi-arrow-return-left"></i>
+        Back to List
+    </a>
+</div>

@@ -1,0 +1,55 @@
+﻿@model AccFlex.Models.Student
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-muted text-center">
+    <i class="bi bi-collection"></i>
+    Editing Student
+</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GenderID" class="control-label"></label>
+                <select asp-for="GenderID" class="form-control" asp-items="ViewBag.GenderID"></select>
+                <span asp-validation-for="GenderID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClassID" class="control-label"></label>
+                <select asp-for="ClassID" class="form-control" asp-items="ViewBag.ClassID"></select>
+                <span asp-validation-for="ClassID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success mt-4">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Save
+                </button>
+
+                <a class="btn btn-outline-primary mt-4" asp-action="Index">
+                    <i class="bi bi-x-circle-fill"></i>
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
